@@ -1,0 +1,105 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000728;
+  /* opacity: 0.99; */
+  color: white;
+  transition: 0.9s all ease;
+  position: Fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  /* z-index: 100000000; */
+}
+
+.navbar.active {
+  background-color: white;
+  color: black;
+}
+
+.container {
+  width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+    .logo {
+      font-family: Pacifico, cursive;
+      align-items: center;
+      font-size: 34px;
+      font-weight: bold;
+      .brain {
+        color: #E8CCEB;
+      }
+      }
+
+    .links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        font-weight: 500;
+        
+       .list{
+        display: flex;
+        align-items: center;
+        gap: 24px;
+       }
+      
+       .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            position: relative;
+          
+
+          img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+
+          }
+
+          .options{
+            position: absolute;
+            top: 50px;
+            right: 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid lightgray;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: gray;
+            width: 200px;
+            font-weight: 300;
+          }
+
+          .button {
+            color: blueviolet;
+            font-weight: 500;
+            padding: 10px 20px;
+            cursor: pointer;
+          }
+          
+        }
+       }
+      }
+    
+
+ hr {
+  width: 100%;
+  height: 0;
+  border: 0.5px solid rgba(37, 37, 64, 0.707);
+}
+
+.menu {
+  width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 300px;
+  color: black;
+  height: 20px;
+}
