@@ -43,7 +43,7 @@ const Navbar = () => {
             <img src="./img/logo.png" alt="MaestroMinds" />
           </span>
           <Link to="/" className="link">
-            <span className="text"> </span>
+            <span className="text">MaestroMinds </span>
           </Link>
         </div>
         <div className="links">
