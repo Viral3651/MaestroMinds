@@ -1,0 +1,121 @@
+
+.footer {
+    margin-top: 10px;
+    background-color: #000728; 
+    color: #ffffff; 
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+
+  .footer .top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .footer .top h2 {
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffdd00; 
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+  
+  .footer .top div span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #d3d3d3; 
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .footer .top div span:hover {
+    color: #ffffff; 
+  }
+
+  .footer .bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #1a2c41; 
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+  
+
+  .footer .bottom .left {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+  }
+  
+  .footer .bottom .left img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: -15px;
+  }
+  
+  .footer .bottom .left h2 {
+    font-family: Pacifico, cursive;
+    font-size: 24px;
+    color: white; 
+    margin: 0; 
+    margin-left: -10px;
+  }
+  
+  .footer .bottom .left span {
+    font-size: 12px;
+    color: #d3d3d3;
+  }
+  
+  .footer .bottom .right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex;
+  }
+  
+  .footer .bottom .right .social {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .footer .bottom .right .social svg {
+    color: #d3d3d3; 
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .footer .bottom .right .social svg:hover {
+    color: #ffdd00; 
+    transform: scale(1.2); 
+  }
+  
+
+  @media (max-width: 768px) {
+    .footer .bottom {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer .bottom .left {
+      align-items: center;
+    }
+  
+    .footer .bottom .right {
+      align-items: center;
+      margin-top: 20px;
+    }
+  }
+  

@@ -1,0 +1,33 @@
+.featuredtutors{
+    /* margin-top: 55px; */
+
+    height: 320px;
+    background-color: aliceblue;
+    position: relative;
+    cursor: pointer;
+  
+
+    img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border: 20px solid #000728;
+    }
+    
+    .desc{
+        font-weight: bold;
+        position: absolute;
+        top: 225px;
+        left: 20px;
+        color: white;
+    }
+    .user{
+        position: absolute;
+        top: 240px;
+        left: 20px;
+        font-weight: bold;
+        font-size: 25px;
+        color: white;
+    }
+
+}

@@ -8,19 +8,21 @@ import {
 } from "react-router-dom";
 import Home from './pages/home/home';
 import Appointment from './pages/Appointments/Appointments';
-import Dashboard from './Pages/Dashboard/Dashboard';
 import Setting from './Pages/Setting/Setting';
 import Messages from './pages/messages/Messages';
 import Login from './pages/login/login';
 import Mystudents from './Pages/Mystudents/Mystudents';
-import Profile from './pages/Profile/Profile';
-import Tutors from './pages/Tutors/Tutors';
+import Tutors from './Tutor/Tutors/Tutors';
 import Register from './pages/register/register';
-import Add from './pages/add/add';
 import './App.css'
-import Tutorregistration from './Pages/Tutorregistration/Tutorregistration';
+import Tutorregistration from './Tutor/Tutorregistration/Tutorregistration';
 import Mytutor from './Pages/Mytutors/Mytutor';
 import Logout from './Pages/Logout/Logout';
+import About from './Pages/About/About';
+import Tutorprofile from './Tutor/Tutorprofile/Tutorprofile';
+import Studentprofile from './Student/Studentprofile/Studentprofile';
+import SearchResults from './Pages/SearchResults/SearchResults';
+import Tutorpage from './Tutor/Tutorpage/Tutorpage';
 
 
 
@@ -48,8 +50,8 @@ const App = () => {
           element: <Appointment/>
         },
         {
-          path: "/Dashboard",
-          element: <Dashboard/>
+          path: "/tutor-profile",
+          element: <Tutorprofile/>
         },
         {
           path: "/Setting",
@@ -67,10 +69,7 @@ const App = () => {
           path: "/Mystudents",
           element: <Mystudents/>
         },
-        {
-          path: "/Profile",
-          element: <Profile/>
-        },
+      
         {
           path: "/Tutors",
           element: <Tutors/>
@@ -78,10 +77,6 @@ const App = () => {
         {
           path: "/Register",
           element: <Register/>
-        },
-        {
-          path: "/Add",
-          element: <Add/>
         },
         {
           path: "/Tutorregistration",
@@ -94,13 +89,31 @@ const App = () => {
         {
           path: "/Logout",
           element: <Logout/>
+        },
+        {
+          path: "/About",
+          element: <About/>
+        }
+        ,
+        {
+          path: "/student-profile",
+          element: <Studentprofile/>
+        }
+        ,
+        {
+          path: "/search",
+          element: <SearchResults/>
+        }
+        ,
+        {
+          path: "/tutor/:id",
+          element: <Tutorpage/>
         }
       ]
     },
   ]);
   return (
-   <>
-    <RouterProvider router={router} /></>
+    <RouterProvider router={router} />
   )
 }
 

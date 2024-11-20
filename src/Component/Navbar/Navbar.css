@@ -3,103 +3,135 @@
   flex-direction: column;
   align-items: center;
   background-color: #000728;
-  /* opacity: 0.99; */
   color: white;
   transition: 0.9s all ease;
-  position: Fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100vw;
-  /* z-index: 100000000; */
+  z-index: 1000;
 }
 
 .navbar.active {
   background-color: white;
   color: black;
 }
-
+.navbar.active .logo .text { color: black; }
 .container {
-  width: 1400px;
+  width: 90%;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
-  padding: 10px 0px;
-    .logo {
-      font-family: Pacifico, cursive;
-      align-items: center;
-      font-size: 34px;
-      font-weight: bold;
-      .brain {
-        color: #E8CCEB;
-      }
-      }
+  align-items: center;
+  padding: 10px 0;
+}
 
-    .links {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-        font-weight: 500;
-        
-       .list{
-        display: flex;
-        align-items: center;
-        gap: 24px;
-       }
-      
-       .user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            position: relative;
-          
+.logo {
+  display: flex;
+  align-items: center;
+  font-family: Pacifico, cursive;
+  font-size: 34px;
+  font-weight: bold;
+  margin-left: -300px;
 
-          img {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
+}
 
-          }
+.logo .rlogo img {
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
+}
 
-          .options{
-            position: absolute;
-            top: 50px;
-            right: 0;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            border: 1px solid lightgray;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            color: gray;
-            width: 200px;
-            font-weight: 300;
-          }
+.logo .text {
+  margin-left: -8px;
+  color: white;
+  text-decoration: none;
+}
 
-          .button {
-            color: blueviolet;
-            font-weight: 500;
-            padding: 10px 20px;
-            cursor: pointer;
-          }
-          
-        }
-       }
-      }
-    
+.links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-weight: 500;
+  margin-right: -300px;
+}
 
- hr {
+.link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #ddd;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.user img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.options {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: gray;
+  width: 200px;
+  font-weight: 300;
+}
+
+.button {
+  color: blueviolet;
+  font-weight: 500;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+hr {
   width: 100%;
   height: 0;
   border: 0.5px solid rgba(37, 37, 64, 0.707);
 }
 
 .menu {
-  width: 1400px;
+  width: 90%;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
-  font-weight: 300px;
+  font-weight: 300;
   color: black;
   height: 20px;
+}
+
+.menu .link {
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.menu .link:hover {
+  color: #555;
 }
