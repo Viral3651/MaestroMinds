@@ -1,4 +1,4 @@
-/* SearchResults.css */
+
 
 .search-results-page {
     display: flex;
@@ -32,7 +32,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    align-self: flex-end; /* Align the search bar to the right */
+    align-self: flex-end; 
 }
 
 .search-bar input {

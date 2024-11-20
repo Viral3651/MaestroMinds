@@ -1,8 +1,8 @@
-// SearchResults.jsx
+
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { tutorscard } from '../../data';
-import './SearchResults.css';  // Import the CSS file
+import './SearchResults.css';  
 
 const SearchResults = () => {
     const location = useLocation();
