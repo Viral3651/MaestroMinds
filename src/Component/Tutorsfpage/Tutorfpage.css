@@ -1,84 +1,68 @@
-.tutorfpage{
-     .tutor-features{
-         /* font-size: 24px;
-         background-color: aliceblue;
-         display: flex;
-         justify-content: center;
-         padding: 150px 0px;
- 
-       
- 
-         .container{
-             width: 1400px;
-             display: flex;
-             align-items: center;
-             gap: 15px;
-             .item{
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-              h1{
-                 font-size: 50px;
-                 color: #000728;
-              }
-              p{
-                 color: #000728;
-              }
-              .title{
-                 color: #000728;
-              }
-              img {
-              width: 100%;
-              
-              }  
-         }
-     } */
-      margin-left: 50px;
-      background-color: aliceblue;
-      display: flex;
-     justify-content: center;
-     padding: 10px 0px;
-     
-      h1{
-        color: #000728 ;
-      }
-      P{
-        color: #000728;
-        font-size: 18px;
-        margin-bottom: 20px;
-      }
-      .title{
-        color: #000728;
-        font-weight: bold;
-        font-size: 20px;
+.tutorfpage {
+  .tutor-features {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    background-color: aliceblue;
+    padding: 10px 0;
+    margin-left:30px;
 
-      }
-      img{
-        margin-top: 50px;
-        margin-right: 50px;
-        width: 550px;
-        border-radius: 10px;
-      }
-     
- } }
- .btn {
-    margin-top: -20px;
-    margin-left: 150px;
-    background-color: #000728; 
-    color: white; 
-    border: none; 
-    border-radius: 5px; 
-    padding: 10px 20px; 
-    font-size: 16px; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    .container {
+      display: flex;
+      justify-content: space-between; 
+      width: 100%;
+      margin-top: -5px;
+    }
+
+    h1 {
+      color: #000728;
+    }
+
+    p {
+      color: #000728;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      color: #000728;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .description {
+      flex: 1; 
+      padding-right: 20px;
+    }
+
+    .image {
+      flex: 1; 
+    }
+
+    img {
+      
+      width: 100%; 
+      height: auto; 
+      border-radius: 10px;
+    }
   }
-  
-  .btn:hover {
-    background-color: #005bb5; 
-    transform: scale(1.05); 
-    color: #000728; 
-  }
-  
-  
- 
+
+.btn {
+  margin-top: -20px;
+  background-color: #000728; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-left: -1200px
+}
+
+.btn:hover {
+  background-color: #005bb5; 
+  transform: scale(1.05); 
+  color: #000728; 
+}
+}
