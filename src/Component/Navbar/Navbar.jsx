@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
+import { UserContext } from '../../UserContext';
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -9,7 +10,7 @@ const Navbar = () => {
 
   const [MouseOverColor, setMouseOverColor] = useState(null);
   const mouseOveron = () => {
-    setMouseOverColor('#005bb5');
+    setMouseOverColor('#218838');
   };
   const mouseOveroff = () => {
     setMouseOverColor(null);
@@ -25,13 +26,8 @@ const Navbar = () => {
     };
   }, []);
 
-  const currentUser = {
-    id: 1,
-    username: 'Sapnish Sharma',
-    isTutor: false,
-    isStudent: false,
-  };
-  if (currentUser.isTutor && currentUser.isStudent) {
+  const { user } = useContext(UserContext);
+  if (user.isTutor && user.isStudent) {
     throw new Error('User cannot be both a tutor and a student.');
   }
 
@@ -54,7 +50,7 @@ const Navbar = () => {
             <Link to="/About" className="link">
               About Us
             </Link>
-            {!currentUser.isTutor && !currentUser.isStudent && (
+            {!user.isTutor && !user.isStudent && (
               <>
                 <Link to="/login" className="link">
                   Log In
@@ -68,20 +64,21 @@ const Navbar = () => {
                 <Link to="/mytutors" className="link">
                   My Tutors
                 </Link>
-                <button
+                <Link to="/register" className="link"><button
                   style={{ backgroundColor: MouseOverColor }}
                   onMouseOver={mouseOveron}
                   onMouseOut={mouseOveroff}
                 >
                   Join Now
                 </button>
+                </Link>
               </>
             )}
 
-            {currentUser.isStudent && (
+            {user.isStudent && (
               <div className="user" onClick={() => setOpen(!open)}>
                 <img src="./img/profile.jpg" alt="profile" className="profile-img" />
-                <span>{currentUser?.username}</span>
+                <span>{user?.username}</span>
                 {open && (
                   <div className="options">
                     <Link to="/student-profile" className="link">
@@ -90,8 +87,8 @@ const Navbar = () => {
                     <Link to="/courses" className="link">
                       My Courses
                     </Link>
-                    <Link to="/progress" className="link">
-                      Progress
+                    <Link to="/appointments" className="link">
+                      Appointments
                     </Link>
                     <Link to="/messages" className="link">
                       Messages
@@ -107,10 +104,11 @@ const Navbar = () => {
               </div>
             )}
 
-            {currentUser.isTutor && (
+            {user.isTutor && (
               <div className="user" onClick={() => setOpen(!open)}>
+                
                 <img src="./img/profile.jpg" alt="profile" className="profile-img" />
-                <span>{currentUser?.username}</span>
+                <span>{user?.username}</span>
                 {open && (
                   <div className="options">
                     <Link to="/tutor-profile" className="link">
@@ -131,7 +129,9 @@ const Navbar = () => {
                     <Link to="/logout" className="link">
                       Logout
                     </Link>
+                  
                   </div>
+                  
                 )}
               </div>
             )}

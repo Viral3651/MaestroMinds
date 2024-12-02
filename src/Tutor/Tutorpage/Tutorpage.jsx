@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { UserContext } from '../../UserContext';
 import { tutorscard } from '../../data';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './Tutorpage.css';
-import DateTimePicker from 'react-datetime-picker';
 
 const Tutorpage = ({ onBookSession }) => {
   const { id } = useParams();
+  const { user } = useContext(UserContext);
   const tutor = tutorscard.find(tutor => tutor.id === parseInt(id));
 
   const [date, setDate] = useState(new Date());
@@ -44,9 +47,16 @@ const Tutorpage = ({ onBookSession }) => {
         <h1 className="tutor-name">{tutor.user}</h1>
         <p className="tutor-desc">{tutor.longDesc || tutor.desc}</p>
         <p className="tutor-charge">Charge: {tutor.charge}</p>
-        <button onClick={handleBookSessionClick} className="book-session-btn">
-          Book a Session
-        </button>
+        {!user?.isTutor && !user?.isStudent && (
+          <Link to="/register" className="link">
+            <button className="Register">Register Now</button>
+          </Link>
+        )}
+        {user?.isStudent && (
+          <button onClick={handleBookSessionClick} className="book-session-btn">
+            Book a Session
+          </button>
+        )}
       </div>
 
       {showDateTimePicker && (
@@ -59,7 +69,13 @@ const Tutorpage = ({ onBookSession }) => {
             onClick={(e) => e.stopPropagation()} // Prevent modal background clicks from closing it
           >
             <h3>Select Date and Time</h3>
-            <DateTimePicker onChange={handleDateChange} value={date} autoFocus />
+            <DatePicker
+              selected={date}
+              onChange={handleDateChange}
+              showTimeSelect
+              dateFormat="Pp"
+              inline
+            />
             <button
               onClick={() => setShowDateTimePicker(false)}
               className="cancel-btn"
