@@ -6,8 +6,8 @@ import {
   RouterProvider,
   Outlet
 } from "react-router-dom";
-import Home from './pages/home/home';
-import Appointment from './pages/Appointments/Appointments';
+import Home from './Pages/Home/Home';
+import Appointment from './Pages/Appointments/Appointments';
 import Setting from './Pages/Setting/Setting';
 import Messages from './pages/messages/Messages';
 import Login from './pages/login/login';
@@ -23,6 +23,7 @@ import Tutorprofile from './Tutor/Tutorprofile/Tutorprofile';
 import Studentprofile from './Student/Studentprofile/Studentprofile';
 import SearchResults from './Pages/SearchResults/SearchResults';
 import Tutorpage from './Tutor/Tutorpage/Tutorpage';
+import { UserProvider } from './UserContext';
 
 
 
@@ -36,6 +37,9 @@ const App = () => {
       </div>
     )
   }
+  const onBookSession = (session) => {
+     console.log('Session booked:', session);
+   }; 
   const router = createBrowserRouter([
     {
       path: "/",
@@ -107,13 +111,15 @@ const App = () => {
         ,
         {
           path: "/tutor/:id",
-          element: <Tutorpage/>
+          element: <Tutorpage onBookSession={onBookSession} />
         }
       ]
     },
   ]);
   return (
+    <UserProvider>
     <RouterProvider router={router} />
+    </UserProvider>
   )
 }
 
