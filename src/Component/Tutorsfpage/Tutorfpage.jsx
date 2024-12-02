@@ -1,6 +1,7 @@
 import React from 'react';
 import './Tutorfpage.css';
 import { FaCheckSquare } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Tutorfpage = () => {
   return (
@@ -28,7 +29,8 @@ const Tutorfpage = () => {
             <img src="./img/tutor.jpg" alt="Tutor" />
           </div>
         </div>
-        <button className='btn'>Become a Maestro</button>
+        <Link to="/Tutorregistration" className="link">
+        <button className='btn'>Become a Maestro</button> </Link>
       </div>
     </div>
   );

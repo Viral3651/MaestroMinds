@@ -1,0 +1,52 @@
+.page{
+    background-color: #000728;
+}
+.tutorregistration {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+}
+
+.tutorregistration h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Pacifico, cursive;
+    font-weight: bold;
+}
+
+.tutorregistration label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.tutorregistration input,
+.tutorregistration select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.tutorregistration button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tutorregistration button:hover {
+    background-color: #218838;
+}
+
+.tutorregistration p {
+    text-align: center;
+    color: red;
+}

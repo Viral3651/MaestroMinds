@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const [MouseOverColor, setMouseOverColor] = useState(null);
   const mouseOveron = () => {
-    setMouseOverColor('#005bb5');
+    setMouseOverColor('#218838');
   };
   const mouseOveroff = () => {
     setMouseOverColor(null);
@@ -29,7 +29,7 @@ const Navbar = () => {
     id: 1,
     username: 'Sapnish Sharma',
     isTutor: false,
-    isStudent: true,
+    isStudent: false
   };
   if (currentUser.isTutor && currentUser.isStudent) {
     throw new Error('User cannot be both a tutor and a student.');
@@ -68,13 +68,14 @@ const Navbar = () => {
                 <Link to="/mytutors" className="link">
                   My Tutors
                 </Link>
-                <button
+                <Link to="/register" className="link"><button
                   style={{ backgroundColor: MouseOverColor }}
                   onMouseOver={mouseOveron}
                   onMouseOut={mouseOveroff}
                 >
                   Join Now
                 </button>
+                </Link>
               </>
             )}
 
