@@ -10,6 +10,7 @@ const Register = () => {
     confirmPassword: ''
   });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +22,14 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    setLoading(true);  // Set loading to true when the request starts
+
     const { username, email, password, confirmPassword } = formData;
 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
+      setLoading(false);  // Set loading to false after validation error
       return;
     }
 
@@ -35,9 +40,15 @@ const Register = () => {
         password
       });
       console.log('Registration successful:', response.data);
-      // Redirect to login or handle success
+      window.location.href = '/login';  // Redirect after successful registration
     } catch (err) {
-      setError('Registration failed. Please try again.');
+      if (err.response) {
+        setError(err.response.data.message);
+      } else {
+        setError('Registration failed. Please try again.');
+      }
+    } finally {
+      setLoading(false);  // Set loading to false after request completes
     }
   };
 
@@ -90,7 +101,9 @@ const Register = () => {
           />
         </div>
         {error && <div className="error-message">{error}</div>}
-        <button type="submit" className="register-button">Register</button>
+        <button type="submit" className="register-button" disabled={loading}>
+          {loading ? 'Registering...' : 'Register'}
+        </button>
       </form>
     </div>
   );

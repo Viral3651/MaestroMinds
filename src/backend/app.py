@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import sqlite3
 from bcrypt import hashpw, gensalt, checkpw
 
 app = Flask(__name__)
+CORS(app)
 DATABASE = 'users.db'
 
 # Helper function to connect to the database
@@ -22,15 +24,19 @@ def register():
     # Hash the password
     hashed_password = hashpw(password.encode('utf-8'), gensalt())
 
-    # Insert the new user into the database
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute('''
-        INSERT INTO users (username, email, password) 
-        VALUES (?, ?, ?)
-    ''', (username, email, hashed_password))
-    conn.commit()
-    conn.close()
+    try:
+        # Insert the new user into the database
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO users (username, email, password) 
+            VALUES (?, ?, ?)
+        ''', (username, email, hashed_password))
+        conn.commit()
+    except sqlite3.IntegrityError:
+        return jsonify({'message': 'Username or email already exists'}), 409
+    finally:
+        conn.close()
 
     return jsonify({'message': 'User registered successfully'}), 201
 
@@ -106,4 +112,4 @@ if __name__ == '__main__':
 
         conn.commit()
 
-    app.run(debug=True)
+    app.run(port=5000, debug=True)

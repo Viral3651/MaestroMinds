@@ -29,7 +29,7 @@ const Navbar = () => {
     id: 1,
     username: 'Sapnish Sharma',
     isTutor: false,
-    isStudent: true,
+    isStudent: false,
   };
   if (currentUser.isTutor && currentUser.isStudent) {
     throw new Error('User cannot be both a tutor and a student.');
