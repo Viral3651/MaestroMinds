@@ -1,98 +1,104 @@
 .tutor-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    width: 100%;
-    height: 100vh;
-    overflow-y: auto;
-    background-color: #f9f9f9;
-  }
-  
-  .tutor-profile {
-    max-width: 800px;
-    margin: 20px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .tutor-img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .tutor-name {
-    font-size: 2rem;
-    margin-top: 10px;
-  }
-  
-  .tutor-desc {
-    margin: 20px 0;
-    font-size: 1.2rem;
-    line-height: 1.6;
-  }
-  
-  .tutor-charge {
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .book-session-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .book-session-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .datetime-picker-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .datetime-picker-container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 1010;
-    text-align: center;
-  }
-  
-  .cancel-btn {
-    margin-top: 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .confirmation-popup {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1050;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+.tutor-profile {
+  max-width: 800px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tutor-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.tutor-name {
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.tutor-desc {
+  margin: 20px 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.tutor-charge {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.Register{
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.book-session-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.book-session-btn:hover {
+  background-color: #0056b3;
+}
+
+.datetime-picker-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.datetime-picker-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1010;
+  text-align: center;
+}
+
+.cancel-btn {
+  margin-top: 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmation-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+}

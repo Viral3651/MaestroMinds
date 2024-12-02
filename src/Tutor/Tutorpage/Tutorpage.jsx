@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { tutorscard } from '../../data';
 import './Tutorpage.css';
 import DateTimePicker from 'react-datetime-picker';
@@ -11,6 +11,12 @@ const Tutorpage = ({ onBookSession }) => {
   const [date, setDate] = useState(new Date());
   const [showDateTimePicker, setShowDateTimePicker] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const currentUser = {
+    id: 1,
+    username: 'Sapnish Sharma',
+    isTutor: false,
+    isStudent: false,
+  };
 
   if (!tutor) {
     return <div className="not-found">Tutor not found</div>;
@@ -44,9 +50,16 @@ const Tutorpage = ({ onBookSession }) => {
         <h1 className="tutor-name">{tutor.user}</h1>
         <p className="tutor-desc">{tutor.longDesc || tutor.desc}</p>
         <p className="tutor-charge">Charge: {tutor.charge}</p>
-        <button onClick={handleBookSessionClick} className="book-session-btn">
+        {!currentUser.isTutor && !currentUser.isStudent && (
+          <Link to="/register" className="link">
+          <button className='Register'>Register Now</button>
+          </Link>
+        )}
+        {currentUser.isTutor && currentUser.isStudent && (
+          <button onClick={handleBookSessionClick} className="book-session-btn">
           Book a Session
         </button>
+        )}
       </div>
 
       {showDateTimePicker && (
