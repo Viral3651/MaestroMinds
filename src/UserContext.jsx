@@ -5,7 +5,7 @@ export const UserProvider = ({children}) => {
         id: 1,
         username: 'Sapnish Sharma',
         isTutor: false,
-        isStudent: true
+        isStudent: false
     });
 
     return (

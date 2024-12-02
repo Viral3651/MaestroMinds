@@ -4,10 +4,13 @@ import "./Register.css";
 
 const Register = () => {
   const [formData, setFormData] = useState({
+    first_name: '',
+    last_name: '',
     username: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    phone_number: ''
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -25,7 +28,7 @@ const Register = () => {
     setError(null);
     setLoading(true);  // Set loading to true when the request starts
 
-    const { username, email, password, confirmPassword } = formData;
+    const { first_name, last_name, username, email, password, confirmPassword, phone_number } = formData;
 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
@@ -35,27 +38,47 @@ const Register = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/api/register', {
+        first_name,
+        last_name,
         username,
         email,
-        password
+        password,
+        phone_number
       });
-      console.log('Registration successful:', response.data);
-      window.location.href = '/login';  // Redirect after successful registration
+      alert(response.data.message);
     } catch (err) {
-      if (err.response) {
-        setError(err.response.data.message);
-      } else {
-        setError('Registration failed. Please try again.');
-      }
+      setError(err.response?.data?.message || "An error occurred");
     } finally {
-      setLoading(false);  // Set loading to false after request completes
+      setLoading(false);  // Set loading to false when the request is complete
     }
   };
 
   return (
-    <div className="register-container">
+    <div className="register-page">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="first_name">First Name:</label>
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            value={formData.first_name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="last_name">Last Name:</label>
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            value={formData.last_name}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="username">Username:</label>
           <input
@@ -74,6 +97,17 @@ const Register = () => {
             id="email"
             name="email"
             value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone_number">Phone Number:</label>
+          <input
+            type="tel"
+            id="phone_number"
+            name="phone_number"
+            value={formData.phone_number}
             onChange={handleChange}
             required
           />

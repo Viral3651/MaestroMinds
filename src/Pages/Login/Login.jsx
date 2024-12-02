@@ -1,34 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import "./Login.css";
+import { UserContext } from '../../UserContext';
 
 const Login = () => {
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { setUser } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    setLoading(true);  // Set loading to true when the request starts
+    setLoading(true);
 
     try {
       const response = await axios.post('http://localhost:5000/api/login', {
         usernameOrEmail,
-        password,
+        password
       });
-      console.log('Login successful:', response.data);
-      window.location.href = '/dashboard';  // Redirect to dashboard after successful login
+      const { first_name, last_name, role } = response.data;
+      
+      // Set user information in context
+      setUser({
+        firstName: first_name,
+        lastName: last_name,
+        role,
+        isLoggedIn: true
+      });
+
+      alert('Login successful!');
     } catch (err) {
-      setError('Invalid username/email or password');
+      setError(err.response?.data?.message || "An error occurred");
     } finally {
-      setLoading(false);  // Set loading to false after request completes
+      setLoading(false);
     }
   };
 
   return (
-    <div className="login-container">
+    <div className="login-page">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -36,6 +47,7 @@ const Login = () => {
           <input
             type="text"
             id="usernameOrEmail"
+            name="usernameOrEmail"
             value={usernameOrEmail}
             onChange={(e) => setUsernameOrEmail(e.target.value)}
             required
@@ -46,6 +58,7 @@ const Login = () => {
           <input
             type="password"
             id="password"
+            name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
