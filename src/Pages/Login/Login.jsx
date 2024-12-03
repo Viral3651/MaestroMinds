@@ -24,7 +24,7 @@ const Login = () => {
       });
       const { first_name, last_name, role } = response.data;
 
-      // Set user information in context
+      // Set user information in context and local storage
       setUser({
         firstName: first_name,
         lastName: last_name,
