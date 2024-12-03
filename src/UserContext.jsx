@@ -7,7 +7,7 @@ export const UserProvider = ({children}) => {
         isTutor: false,
         isStudent: true
     });
-
+    const logout = () => setUser(null);
     return (
         <UserContext.Provider value={{user , setUser}}>
             {children}

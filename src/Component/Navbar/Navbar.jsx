@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { UserContext } from '../../UserContext';
 
@@ -7,6 +7,7 @@ const Navbar = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const [MouseOverColor, setMouseOverColor] = useState(null);
   const mouseOveron = () => {
@@ -26,11 +27,15 @@ const Navbar = () => {
     };
   }, []);
 
-  const { user } = useContext(UserContext);
+  const { user, logout } = useContext(UserContext);
   if (user.isTutor && user.isStudent) {
     throw new Error('User cannot be both a tutor and a student.');
   }
 
+  const handleLogout = () => { 
+    logout(); 
+    navigate('/login'); // Redirect to login page };
+  };
   return (
     <div className={active || pathname !== '/' ? 'navbar active' : 'navbar'}>
       <div className="container">
@@ -96,7 +101,7 @@ const Navbar = () => {
                     <Link to="/settings" className="link">
                       Settings
                     </Link>
-                    <Link to="/logout" className="link">
+                    <Link to="/logout" className="link" onClick={handleLogout}>
                       Logout
                     </Link>
                   </div>
@@ -126,7 +131,7 @@ const Navbar = () => {
                     <Link to="/messages" className="link">
                       Messages
                     </Link>
-                    <Link to="/logout" className="link">
+                    <Link to="/logout" className="link" onClick={handleLogout}>
                       Logout
                     </Link>
                   
