@@ -22,7 +22,7 @@ def register():
     username = data['username']
     email = data['email']
     password = data['password']
-    role = 'student'
+    role = data.get('role', 'student')  # Role can be 'student', 'tutor', or 'both'
     phone_number = data['phone_number']
 
     # Hash the password
@@ -38,12 +38,20 @@ def register():
         ''', (first_name, last_name, username, email, hashed_password, role, phone_number))
         user_id = cursor.lastrowid
 
-        # Insert student-specific data into the students table
-        if role == 'student':
+        # Insert role-specific data into the respective tables
+        if role in ['student', 'both']:
             cursor.execute('''
                 INSERT INTO students (user_id) 
                 VALUES (?)
             ''', (user_id,))
+        if role in ['tutor', 'both']:
+            department = data.get('department', None)
+            if department:
+                cursor.execute('''
+                    INSERT INTO tutors (user_id, department) 
+                    VALUES (?, ?)
+                ''', (user_id, department))
+
         conn.commit()
     except sqlite3.IntegrityError:
         return jsonify({'message': 'Username or email already exists'}), 409
@@ -52,41 +60,43 @@ def register():
 
     return jsonify({'message': 'User registered successfully'}), 201
 
-# Endpoint to register a new tutor
+# Endpoint to register a new tutor (for existing users)
 @app.route('/api/tutorregistration', methods=['POST'])
 def tutor_register():
     data = request.get_json()
-    first_name = data['first_name']
-    last_name = data['last_name']
     username = data['username']
-    email = data['email']
-    password = data['password']
-    role = 'tutor'
-    phone_number = data['phone_number']
     department = data['department']
 
-    # Hash the password
-    hashed_password = hashpw(password.encode('utf-8'), gensalt())
-
     try:
-        # Insert the new user into the database
+        # Check if the user already exists in the database
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT INTO tutors (user_id, department)
-            VALUES (?, ?)
-        ''', (user_id, department))
+            SELECT * FROM users WHERE username = ?
+        ''', (username,))
+        user = cursor.fetchone()
 
-        user_id = cursor.lastrowid
+        if not user:
+            return jsonify({'message': 'User does not exist. Please register as a user first.'}), 404
+
+        user_id = user['id']
+
+        # Update the user's role if they are not already a tutor
+        if user['role'] == 'student':
+            cursor.execute('''
+                UPDATE users SET role = 'both' WHERE id = ?
+            ''', (user_id,))
+        elif user['role'] == 'tutor':
+            return jsonify({'message': 'User is already registered as a tutor'}), 409
 
         # Insert tutor-specific data into the tutors table
         cursor.execute('''
-            INSERT INTO tutors (user_id, department, available_times) 
-            VALUES (?, ?, ?)
-        ''', (user_id, department, available_times))
+            INSERT INTO tutors (user_id, department) 
+            VALUES (?, ?)
+        ''', (user_id, department))
         conn.commit()
     except sqlite3.IntegrityError:
-        return jsonify({'message': 'Username or email already exists'}), 409
+        return jsonify({'message': 'Tutor registration failed'}), 409
     finally:
         conn.close()
 

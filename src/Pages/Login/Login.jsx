@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import "./Login.css";
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
+import "./Login.css";
 
 const Login = () => {
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
@@ -9,6 +10,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const Login = () => {
         password
       });
       const { first_name, last_name, role } = response.data;
-      
+
       // Set user information in context
       setUser({
         firstName: first_name,
@@ -31,6 +33,7 @@ const Login = () => {
       });
 
       alert('Login successful!');
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || "An error occurred");
     } finally {
@@ -69,9 +72,6 @@ const Login = () => {
           {loading ? 'Logging in...' : 'Log In'}
         </button>
       </form>
-      <p>
-        Don't have an account? <a href="/register">Register here</a>
-      </p>
     </div>
   );
 };
