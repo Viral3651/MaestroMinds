@@ -23,7 +23,8 @@ const About = () => {
       description: "Responsible for testing and project organization. Developing and maintaining the project trello workspace to ensure the project is well managed. Monitors code validity, conciseness, and efficiency." ,
       imgSrc: './img/Hayden.png'}, ];
   return (
-    <div className="team-container">
+    <div className='team-body'>
+      <div className="team-container">
        {teamMembers.map((member, index) => ( 
         <div key={index} className="team-member"> 
           <img src={member.imgSrc} alt={`${member.name}`} className="team-member-img" /> 
@@ -32,6 +33,7 @@ const About = () => {
           <p className="description">{member.description}</p> 
           </div> ))}
            </div>
+    </div>
   )
 }
 
