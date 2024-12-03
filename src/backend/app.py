@@ -36,6 +36,14 @@ def register():
             INSERT INTO users (first_name, last_name, username, email, password, role, phone_number) 
             VALUES (?, ?, ?, ?, ?, ?, ?)
         ''', (first_name, last_name, username, email, hashed_password, role, phone_number))
+        user_id = cursor.lastrowid
+
+        # Insert student-specific data into the students table
+        if role == 'student':
+            cursor.execute('''
+                INSERT INTO students (user_id) 
+                VALUES (?)
+            ''', (user_id,))
         conn.commit()
     except sqlite3.IntegrityError:
         return jsonify({'message': 'Username or email already exists'}), 409
@@ -56,7 +64,6 @@ def tutor_register():
     role = 'tutor'
     phone_number = data['phone_number']
     department = data['department']
-    available_times = data['available_times']
 
     # Hash the password
     hashed_password = hashpw(password.encode('utf-8'), gensalt())
@@ -66,9 +73,10 @@ def tutor_register():
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT INTO users (first_name, last_name, username, email, password, role, phone_number) 
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ''', (first_name, last_name, username, email, hashed_password, role, phone_number))
+            INSERT INTO tutors (user_id, department)
+            VALUES (?, ?)
+        ''', (user_id, department))
+
         user_id = cursor.lastrowid
 
         # Insert tutor-specific data into the tutors table
@@ -139,7 +147,6 @@ if __name__ == '__main__':
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
                 department TEXT NOT NULL,
-                available_times TEXT,
                 rating REAL,
                 FOREIGN KEY (user_id) REFERENCES users (id)
             )

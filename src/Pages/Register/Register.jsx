@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import "./Register.css";
 
 const Register = () => {
@@ -14,6 +15,7 @@ const Register = () => {
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,6 +48,7 @@ const Register = () => {
         phone_number
       });
       alert(response.data.message);
+      navigate('/login'); // Redirect to login page after successful registration
     } catch (err) {
       setError(err.response?.data?.message || "An error occurred");
     } finally {
