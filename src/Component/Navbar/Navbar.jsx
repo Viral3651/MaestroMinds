@@ -36,6 +36,7 @@ const Navbar = () => {
       role: '',
       isLoggedIn: false
     });
+    localStorage.removeItem('user');
     navigate('/login');
   };
 
@@ -85,7 +86,7 @@ const Navbar = () => {
                 <span>{user.firstName} {user.lastName}</span>
                 {open && (
                   <div className="options">
-                    {user.role === 'student' && (
+                    {(user.role === 'student') && (
                       <>
                         <Link to="/student-profile" className="link">
                           Profile
@@ -104,7 +105,7 @@ const Navbar = () => {
                         </Link>
                       </>
                     )}
-                    {user.role === 'tutor' && (
+                    {(user.role === 'tutor' || user.role === 'both') && (
                       <>
                         <Link to="/tutor-profile" className="link">
                           Tutor Profile
@@ -123,7 +124,7 @@ const Navbar = () => {
                         </Link>
                       </>
                     )}
-                    <Link to="/logout" className="link" onClick={handleLogout}>
+                    <Link to="#" className="link" onClick={handleLogout}>
                       Logout
                     </Link>
                   </div>
