@@ -5,9 +5,9 @@ export const UserProvider = ({children}) => {
         id: 1,
         username: 'Sapnish Sharma',
         isTutor: false,
-        isStudent: false
+        isStudent: true
     });
-
+    const logout = () => setUser(null);
     return (
         <UserContext.Provider value={{user , setUser}}>
             {children}
