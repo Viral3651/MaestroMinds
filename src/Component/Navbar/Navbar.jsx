@@ -27,15 +27,18 @@ const Navbar = () => {
     };
   }, []);
 
-  const { user, logout } = useContext(UserContext);
-  if (user.isTutor && user.isStudent) {
-    throw new Error('User cannot be both a tutor and a student.');
-  }
+  const { user, setUser } = useContext(UserContext);
 
   const handleLogout = () => { 
-    logout(); 
-    navigate('/login'); // Redirect to login page };
+    setUser({
+      firstName: '',
+      lastName: '',
+      role: '',
+      isLoggedIn: false
+    });
+    navigate('/login');
   };
+
   return (
     <div className={active || pathname !== '/' ? 'navbar active' : 'navbar'}>
       <div className="container">
@@ -55,7 +58,7 @@ const Navbar = () => {
             <Link to="/About" className="link">
               About Us
             </Link>
-            {!user.isTutor && !user.isStudent && (
+            {!user.isLoggedIn ? (
               <>
                 <Link to="/login" className="link">
                   Log In
@@ -66,77 +69,64 @@ const Navbar = () => {
                 <Link to="/tutors" className="link">
                   Find a Tutor
                 </Link>
-                <Link to="/mytutors" className="link">
-                  My Tutors
-                </Link>
-                <Link to="/register" className="link"><button
-                  style={{ backgroundColor: MouseOverColor }}
-                  onMouseOver={mouseOveron}
-                  onMouseOut={mouseOveroff}
-                >
-                  Join Now
-                </button>
+                <Link to="/register" className="link">
+                  <button
+                    style={{ backgroundColor: MouseOverColor }}
+                    onMouseOver={mouseOveron}
+                    onMouseOut={mouseOveroff}
+                  >
+                    Join Now
+                  </button>
                 </Link>
               </>
-            )}
-
-            {user.isStudent && (
+            ) : (
               <div className="user" onClick={() => setOpen(!open)}>
                 <img src="./img/profile.jpg" alt="profile" className="profile-img" />
-                <span>{user?.username}</span>
+                <span>{user.firstName} {user.lastName}</span>
                 {open && (
                   <div className="options">
-                    <Link to="/student-profile" className="link">
-                      Profile
-                    </Link>
-                    <Link to="/courses" className="link">
-                      My Courses
-                    </Link>
-                    <Link to="/appointments" className="link">
-                      Appointments
-                    </Link>
-                    <Link to="/messages" className="link">
-                      Messages
-                    </Link>
-                    <Link to="/settings" className="link">
-                      Settings
-                    </Link>
+                    {user.role === 'student' && (
+                      <>
+                        <Link to="/student-profile" className="link">
+                          Profile
+                        </Link>
+                        <Link to="/courses" className="link">
+                          My Courses
+                        </Link>
+                        <Link to="/appointments" className="link">
+                          Appointments
+                        </Link>
+                        <Link to="/messages" className="link">
+                          Messages
+                        </Link>
+                        <Link to="/settings" className="link">
+                          Settings
+                        </Link>
+                      </>
+                    )}
+                    {user.role === 'tutor' && (
+                      <>
+                        <Link to="/tutor-profile" className="link">
+                          Tutor Profile
+                        </Link>
+                        <Link to="/mystudents" className="link">
+                          My Students
+                        </Link>
+                        <Link to="/appointments" className="link">
+                          Appointments
+                        </Link>
+                        <Link to="/messages" className="link">
+                          Messages
+                        </Link>
+                        <Link to="/settings" className="link">
+                          Settings
+                        </Link>
+                      </>
+                    )}
                     <Link to="/logout" className="link" onClick={handleLogout}>
                       Logout
                     </Link>
                   </div>
-                )}
-              </div>
-            )}
-
-            {user.isTutor && (
-              <div className="user" onClick={() => setOpen(!open)}>
-                
-                <img src="./img/profile.jpg" alt="profile" className="profile-img" />
-                <span>{user?.username}</span>
-                {open && (
-                  <div className="options">
-                    <Link to="/tutor-profile" className="link">
-                      Tutor Profile
-                    </Link>
-                    <Link to="/mystudents" className="link">
-                      My Students
-                    </Link>
-                    <Link to="/appointments" className="link">
-                      Appointments
-                    </Link>
-                    <Link to="/settings" className="link">
-                      Settings
-                    </Link>
-                    <Link to="/messages" className="link">
-                      Messages
-                    </Link>
-                    <Link to="/logout" className="link" onClick={handleLogout}>
-                      Logout
-                    </Link>
-                  
-                  </div>
-                  
                 )}
               </div>
             )}
