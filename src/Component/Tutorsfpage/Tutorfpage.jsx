@@ -11,7 +11,7 @@ const Tutorfpage = () => {
           <div className='description'>
             <h1>Share Your Knowledge, Shape the Future.</h1>
             <h1>Be a Tutor Today!</h1>
-            <p>Make a difference in a student's life.</p>
+            <h2>Make a difference in a student's life.</h2>
             <div className='title'>
               <FaCheckSquare size={20}/> Professional Development Opportunities
             </div>
