@@ -1,3 +1,3 @@
-module.exports = {
-  testEnvironment: "jsdom",
+export default{
+  testEnvironment: "node",
 };
