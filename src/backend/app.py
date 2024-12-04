@@ -123,6 +123,31 @@ def login():
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
 
+# End point to retrieve a tutor profile
+@app.route('/api/tutor/<int:user_id>', methods=['GET'])
+def get_tutor_profile(user_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        SELECT users.first_name, users.last_name, users.email, tutors.department
+        FROM users
+        JOIN tutors ON users.id = tutors.user_id
+        WHERE users.id = ?
+    ''', (user_id,))
+    tutor = cursor.fetchone()
+    conn.close()
+
+    if tutor is None:
+        return jsonify({'message': 'Tutor not found'}), 404
+
+    return jsonify({
+        'first_name': tutor['first_name'],
+        'last_name': tutor['last_name'],
+        'email': tutor['email'],
+        'department': tutor['department']
+    }), 200
+
+
 if __name__ == '__main__':
     # Create the necessary tables for users, students, tutors, and sessions
     with get_db_connection() as conn:

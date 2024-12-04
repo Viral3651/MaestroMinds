@@ -22,13 +22,14 @@ const Login = () => {
         usernameOrEmail,
         password
       });
-      const { first_name, last_name, role } = response.data;
+      const { first_name, last_name, id, role } = response.data;
 
       // Set user information in context and local storage
       setUser({
         firstName: first_name,
         lastName: last_name,
         role,
+        id,
         isLoggedIn: true
       });
 
