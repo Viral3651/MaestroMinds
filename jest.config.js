@@ -1,3 +1,1 @@
-module.exports = {
-    testEnvironment: "jsdom",
-  };
+export const testEnvironment = "jsdom";
