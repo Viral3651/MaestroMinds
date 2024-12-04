@@ -59,8 +59,9 @@ const TutorRegistration = () => {
   };
 
   return (
+    <div className="page">
     <div className="tutor-registration-page">
-      <h2>Tutor Registration</h2>
+      <h2>Let's Shape The Future</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="first_name">First Name:</label>
@@ -163,6 +164,7 @@ const TutorRegistration = () => {
           {loading ? 'Registering...' : 'Register'}
         </button>
       </form>
+    </div>
     </div>
   );
 };
