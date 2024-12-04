@@ -88,3 +88,11 @@
     font-size: 1.2em;
     margin-bottom: 10px;
 }
+
+.no-results {
+    font-size: 1.2em;
+    color: red;
+    margin-top: 20px;
+    text-align: center;
+}
+

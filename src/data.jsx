@@ -49,7 +49,7 @@ export const tutorscard=[
         img:  './img/uzzwal.jpg',
         charge: "$7.25/hr"
     }, {
-        id:7,
+        id:8,
         user:"Dol Gurung",
         desc: " Football Coach" ,
         img:  './img/dol.jpg',
