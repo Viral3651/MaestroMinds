@@ -33,8 +33,58 @@ const TutorRegistration = () => {
 
     const { first_name, last_name, username, email, password, confirmPassword, phone_number, department } = formData;
 
+        //error for password mismatch
     if (password !== confirmPassword) {
       setError("Passwords do not match");
+      setLoading(false);  // Set loading to false after validation error
+      return;
+    }
+    //error for empty fields
+    if (!first_name || !last_name || !username || !email || !password || !confirmPassword || !phone_number || !department ) {
+      setError("All fields are required");
+      setLoading(false);  // Set loading to false after validation error
+      return;
+    }
+    //error for invalid email
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Invalid email format");
+      setLoading(false);  // Set loading to false after validation error
+      return;
+    }
+    //error for invalid phone number
+    if (!/^\d{10}$/.test(phone_number)) {
+      setError("Invalid phone number format");
+      setLoading(false);  // Set loading to false after validation error
+      return;
+    }
+    //error for invalid password
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+      setError("Password must be at least 8 characters long and contain at least one letter and one number");
+      setLoading(false);  // Set loading to false after validation error
+      return;
+    }
+    //error for invalid username
+    if (!/^[a-zA-Z0-9]+$/.test(username)) {
+      setError("Username can only contain letters and numbers");
+      setLoading(false);  // Set loading to false after validation error
+      return;
+    }
+    //error for invalid first name
+    if (!/^[a-zA-Z]+$/.test(first_name)) {
+      setError("First name can only contain letters");
+      setLoading(false);  // Set loading to false after validation error
+      return;
+    }
+    //error for invalid last name
+    if (!/^[a-zA-Z]+$/.test(last_name)) {
+      setError("Last name can only contain letters");
+      setLoading(false);  // Set loading to false after validation error
+      return;
+    }
+    //error for creating an account that already exists
+    const existingUser = await axios.get(`http://localhost:5000/api/users?username=${username}&email=${email}`);
+    if (existingUser.data.exists) {
+      setError("User already exists");
       setLoading(false);  // Set loading to false after validation error
       return;
     }
