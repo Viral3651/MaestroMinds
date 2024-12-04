@@ -173,53 +173,78 @@ if __name__ == '__main__':
     with get_db_connection() as conn:
         # Users Table (common user attributes)
         conn.execute('''
-            CREATE TABLE IF NOT EXISTS users (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                first_name TEXT NOT NULL,
-                last_name TEXT NOT NULL,
-                username TEXT NOT NULL UNIQUE,
-                email TEXT NOT NULL UNIQUE,
-                password BLOB NOT NULL,
-                role TEXT NOT NULL CHECK(role IN ('student', 'tutor', 'both')),
-                phone_number TEXT NOT NULL
-            )
-        ''')
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            first_name TEXT NOT NULL,
+            last_name TEXT NOT NULL,
+            username TEXT NOT NULL UNIQUE,
+            email TEXT NOT NULL UNIQUE,
+            password BLOB NOT NULL,
+            role TEXT NOT NULL CHECK(role IN ('student', 'tutor', 'both')),
+            phone_number TEXT NOT NULL
+        )
+    ''')
 
-        # Students Table
+    # Students Table
         conn.execute('''
-            CREATE TABLE IF NOT EXISTS students (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER NOT NULL,
-                grade_level TEXT,
-                additional_notes TEXT,
-                FOREIGN KEY (user_id) REFERENCES users (id)
-            )
-        ''')
+        CREATE TABLE IF NOT EXISTS students (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            grade_level TEXT,
+            additional_notes TEXT,
+            bio TEXT,
+            interests TEXT,
+            profile_picture BLOB,
+            FOREIGN KEY (user_id) REFERENCES users (id)
+        )
+    ''')
+        #conn.execute('''
+        #ALTER TABLE students 
+        #ADD COLUMN bio TEXT
+    #''')
+        #conn.execute('''
+        #ALTER TABLE students 
+        #ADD COLUMN interests TEXT
+    #''')
+        #conn.execute('''
+        #ALTER TABLE students 
+        #ADD COLUMN profile_picture BLOB
+    #''')
 
-        # Tutors Table
+    # Tutors Table
         conn.execute('''
-            CREATE TABLE IF NOT EXISTS tutors (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER NOT NULL,
-                department TEXT NOT NULL,
-                rating REAL,
-                FOREIGN KEY (user_id) REFERENCES users (id)
-            )
-        ''')
+        CREATE TABLE IF NOT EXISTS tutors (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            department TEXT NOT NULL,
+            rating REAL,
+            description TEXT,
+            profile_picture BLOB,
+            FOREIGN KEY (user_id) REFERENCES users (id)
+        )
+    ''')
+        #conn.execute('''
+        #ALTER TABLE tutors
+        #ADD COLUMN description TEXT
+    #''')
+        #conn.execute('''
+        #ALTER TABLE tutors
+        #ADD COLUMN profile_picture BLOB
+    #''')
 
-        # Sessions Table
+    # Sessions Table
         conn.execute('''
-            CREATE TABLE IF NOT EXISTS sessions (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                student_id INTEGER NOT NULL,
-                tutor_id INTEGER NOT NULL,
-                scheduled_date TEXT NOT NULL,
-                status TEXT NOT NULL,
-                rating INTEGER,
-                FOREIGN KEY (student_id) REFERENCES students (id),
-                FOREIGN KEY (tutor_id) REFERENCES tutors (id)
-            )
-        ''')
+        CREATE TABLE IF NOT EXISTS sessions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            student_id INTEGER NOT NULL,
+            tutor_id INTEGER NOT NULL,
+            scheduled_date TEXT NOT NULL,
+            status TEXT NOT NULL,
+            rating INTEGER,
+            FOREIGN KEY (student_id) REFERENCES students (id),
+            FOREIGN KEY (tutor_id) REFERENCES tutors (id)
+        )
+    ''')
 
         conn.commit()
 
