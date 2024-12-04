@@ -4,7 +4,8 @@ import sqlite3
 from bcrypt import hashpw, gensalt, checkpw
 
 app = Flask(__name__)
-CORS(app)
+# Allow CORS with specific settings for development
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 DATABASE = 'users.db'
 
 # Helper function to connect to the database
@@ -122,7 +123,8 @@ def login():
         return jsonify({'message': 'Login successful', 'first_name': user['first_name'], 'last_name': user['last_name'], 'role': user['role']}), 200
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
-# Define the endpoint to check if a user is in the database. this is used for error detection.
+
+# Define the endpoint to check if a user is in the database. This is used for error detection.
 @app.route('/api/users', methods=['GET'])
 def check_user_exists():
     conn = get_db_connection()
@@ -167,7 +169,6 @@ def get_tutor_profile(user_id):
         'department': tutor['department']
     }), 200
 
-
 if __name__ == '__main__':
     # Create the necessary tables for users, students, tutors, and sessions
     with get_db_connection() as conn:
@@ -185,7 +186,7 @@ if __name__ == '__main__':
         )
     ''')
 
-    # Students Table
+        # Students Table
         conn.execute('''
         CREATE TABLE IF NOT EXISTS students (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -198,20 +199,8 @@ if __name__ == '__main__':
             FOREIGN KEY (user_id) REFERENCES users (id)
         )
     ''')
-        #conn.execute('''
-        #ALTER TABLE students 
-        #ADD COLUMN bio TEXT
-    #''')
-        #conn.execute('''
-        #ALTER TABLE students 
-        #ADD COLUMN interests TEXT
-    #''')
-        #conn.execute('''
-        #ALTER TABLE students 
-        #ADD COLUMN profile_picture BLOB
-    #''')
 
-    # Tutors Table
+        # Tutors Table
         conn.execute('''
         CREATE TABLE IF NOT EXISTS tutors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -223,16 +212,8 @@ if __name__ == '__main__':
             FOREIGN KEY (user_id) REFERENCES users (id)
         )
     ''')
-        #conn.execute('''
-        #ALTER TABLE tutors
-        #ADD COLUMN description TEXT
-    #''')
-        #conn.execute('''
-        #ALTER TABLE tutors
-        #ADD COLUMN profile_picture BLOB
-    #''')
 
-    # Sessions Table
+        # Sessions Table
         conn.execute('''
         CREATE TABLE IF NOT EXISTS sessions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
