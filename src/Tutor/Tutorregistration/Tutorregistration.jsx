@@ -82,12 +82,12 @@ const TutorRegistration = () => {
       return;
     }
     //error for creating an account that already exists
-    const existingUser = await axios.get(`http://localhost:5000/api/users?username=${username}&email=${email}`);
-    if (existingUser.data.exists) {
-      setError("User already exists");
-      setLoading(false);  // Set loading to false after validation error
-      return;
-    }
+    //const existingUser = await axios.get(`http://localhost:5000/api/users?username=${username}&email=${email}`);
+    //if (existingUser.data.exists) {
+      //setError("User already exists");
+      //setLoading(false);  // Set loading to false after validation error
+      //return;
+    //}
 
     try {
       const response = await axios.post('http://localhost:5000/api/tutorregistration', {
