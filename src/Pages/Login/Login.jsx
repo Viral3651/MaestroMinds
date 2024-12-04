@@ -44,7 +44,8 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <h2>Login</h2>
+      <img src="./img/logo.png" alt="Login" />
+      <h2>Connect with your favorite Maestro.</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="usernameOrEmail">Username or Email:</label>
@@ -72,6 +73,9 @@ const Login = () => {
         <button type="submit" className="login-button" disabled={loading}>
           {loading ? 'Logging in...' : 'Log In'}
         </button>
+        <div className="signup-link">
+          Don't have an account? <a href="/register">Sign Up</a>
+        </div>
       </form>
     </div>
   );
