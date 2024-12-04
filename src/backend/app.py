@@ -122,6 +122,26 @@ def login():
         return jsonify({'message': 'Login successful', 'first_name': user['first_name'], 'last_name': user['last_name'], 'role': user['role']}), 200
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
+# Define the endpoint to check if a user is in the database. this is used for error detection.
+@app.route('/api/users', methods=['GET'])
+def check_user_exists():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    username = request.args.get('username')
+    email = request.args.get('email')
+
+    # Query the database to check if the user exists
+    query = 'SELECT * FROM users WHERE username = ? OR email = ?'
+    cursor.execute(query, (username, email))
+    row = cursor.fetchone()
+    conn.close()
+
+    # If the user exists, return a JSON response with exists: true
+    if row:
+        return jsonify({'exists': True})
+    else:
+        return jsonify({'exists': False})
 
 # End point to retrieve a tutor profile
 @app.route('/api/tutor/<int:user_id>', methods=['GET'])

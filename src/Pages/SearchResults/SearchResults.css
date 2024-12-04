@@ -87,6 +87,10 @@
 .tutor-card h2 {
     font-size: 1.2em;
     margin-bottom: 10px;
+    color: #000728;
+}
+p{
+    color: #000728;
 }
 
 .no-results {

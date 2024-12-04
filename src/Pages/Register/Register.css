@@ -6,8 +6,9 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f4f4f9;
+    background-color: #000728;
     padding: 20px;
+    margin-bottom: -10px;
   }
   
   h2 {
@@ -24,6 +25,7 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30PX;
   }
   
   .form-group {

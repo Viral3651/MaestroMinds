@@ -20,7 +20,7 @@ const About = () => {
   
     { name: 'Hayden Eddy', 
       role: 'Back End Developer',
-      description: "Responsible for testing and project organization. Developing and maintaining the project trello workspace to ensure the project is well managed. Monitors code validity, conciseness, and efficiency." ,
+      description: "Responsible for backend development, building and maintaining the server side of maestro minds, enabling seamless interaction between users and the system, as well as validator of code integrity. " ,
       imgSrc: './img/Hayden.png'}, ];
   return (
     <div className='team-body'>
