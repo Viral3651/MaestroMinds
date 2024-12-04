@@ -1,3 +1,3 @@
-nodule.exports = {
+module.exports = {
   testEnvironment: "jsdom",
 };
