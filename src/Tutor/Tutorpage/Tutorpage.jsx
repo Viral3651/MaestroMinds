@@ -47,12 +47,12 @@ const Tutorpage = ({ onBookSession }) => {
         <h1 className="tutor-name">{tutor.user}</h1>
         <p className="tutor-desc">{tutor.longDesc || tutor.desc}</p>
         <p className="tutor-charge">Charge: {tutor.charge}</p>
-        {!user?.isTutor && !user?.isStudent && (
+        {!user.isLoggedIn && (
           <Link to="/register" className="link">
             <button className="Register">Register Now</button>
           </Link>
         )}
-        {user?.isStudent && (
+        {(user.role === 'student' || user.role === 'tutor')  && (
           <button onClick={handleBookSessionClick} className="book-session-btn">
             Book a Session
           </button>
