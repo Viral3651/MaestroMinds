@@ -1,12 +1,14 @@
 import React from "react";
-import {render, fireEvent} from "@testing-library/react";
+import {render, fireEvent, screen} from "@testing-library/react";
 import SearchResults from "./SearchResults";
 
-describe(SearchResults, ( ) => {
+test('calls onClick handler when clicked', () =>{
     const handleFilter = jest.fn();
 
-    const button = queryByText("All");
-    fireEvent.click(button);
+    render(<button onClick={handleFilter} />);
 
+    const button = queryByText("All");
+
+    fireEvent.click(button);
     expect(handleFilter).toHaveBeenCalledTimes(1);
 });
