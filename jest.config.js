@@ -1,1 +1,5 @@
-export const testEnvironment = "jsdom";
+export const testEnvironment = reactTest();
+
+function reactTest() {
+  return "jsdom";
+}
