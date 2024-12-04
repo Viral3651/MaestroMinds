@@ -7,19 +7,20 @@ const Logout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Clear user information
+    // Clear user information in context and local storage
     setUser({
       firstName: '',
       lastName: '',
       role: '',
       isLoggedIn: false
     });
+    localStorage.removeItem('user');
 
     // Redirect to login page
     navigate('/login');
   }, [setUser, navigate]);
 
-  return "Logging out..."; 
+  return null;
 };
 
 export default Logout;

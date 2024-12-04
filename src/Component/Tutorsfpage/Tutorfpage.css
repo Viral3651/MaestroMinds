@@ -13,15 +13,23 @@
       width: 100%;
       margin-top: -5px;
     }
+    svg {
+      margin-top: -3px;
+      color: #4caf50;
+  }
+  
 
     h1 {
       color: #000728;
     }
-
+    h2{
+      color: blueviolet;
+    }
     p {
       color: #000728;
       font-size: 18px;
       margin-bottom: 20px;
+      text-align: left;
     }
 
     .title {
