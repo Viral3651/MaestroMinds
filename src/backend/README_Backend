@@ -1,0 +1,77 @@
+Backend Dependencies for app.py
+
+This README lists all the dependencies required for the backend section of the project, specifically focusing on the app.py file used for the user and tutor registration system.
+
+Required Dependencies
+
+To ensure that your Flask backend operates correctly, the following dependencies must be installed:
+
+1. Flask
+   - Purpose: Flask is used as the web framework to handle HTTP requests, define endpoints, and serve responses.
+   - Installation: pip install Flask
+
+2. Flask-CORS
+   - Purpose: Flask-CORS is used to handle Cross-Origin Resource Sharing (CORS). It allows the backend to communicate with a frontend hosted on a different origin, which is essential for modern web development.
+   - Installation: pip install flask-cors
+
+3. sqlite3 (built-in with Python)
+   - Purpose: SQLite is used as the database for storing user data, such as credentials and profile information. This library is built into Python and does not require additional installation.
+
+4. bcrypt
+   - Purpose: bcrypt is used to hash user passwords to improve security. It provides a secure method for storing user credentials.
+   - Installation: pip install bcrypt
+
+5. pytest
+   - Purpose: pytest is used for writing and running unit tests to ensure the correctness of the backend logic.
+   - Installation: pip install pytest
+
+Installation Commands
+
+To install all required dependencies, run the following command:
+
+pip install Flask flask-cors bcrypt pytest
+
+Setting Up the Environment
+
+To run the backend, ensure the following:
+
+1. You have Python installed (preferably version 3.7 or higher).
+2. You have created a virtual environment to manage dependencies.
+3. All the dependencies listed above have been installed in your virtual environment.
+
+Example setup commands:
+
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment (Linux/Mac)
+source venv/bin/activate
+
+# Activate the virtual environment (Windows)
+venv\Scripts\activate
+
+# Install dependencies
+pip install Flask flask-cors bcrypt pytest
+
+Running the Backend Server
+
+To run the Flask server, execute the following command:
+
+python app.py
+
+The server will be available at http://localhost:5000, and you should see a debug log indicating that the application is running.
+
+Common Issues and Solutions
+
+- CORS Errors: If you see errors indicating blocked requests due to CORS, ensure flask-cors is installed and properly configured in app.py.
+- Database Errors: Ensure that the users.db SQLite database is present or that app.py creates the necessary tables.
+- Missing Dependencies: If you encounter ModuleNotFoundError, make sure you have installed all dependencies as specified above. Most dependency issues can be fixed by noting what message pops up with the ModuleNotFoundError and installing what it recommends.
+
+Notes
+
+- Always use a virtual environment to avoid dependency conflicts. Without a virtual environment, we noted that issues with Flask-CORS were found. If you install dependencies first, then create the virtual environment, you may need to reinstall the above dependencies. We are unsure why this occurs.
+- For production, we are considering using a more robust database such as PostgreSQL or MySQL, instead of SQLite.
+- In production, use of a WSGI server like Gunicorn to serve the Flask application may be considered.
+
+This document serves as a comprehensive guide for setting up all necessary dependencies for the backend Python environment used in this project.
+
