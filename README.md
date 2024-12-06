@@ -110,6 +110,37 @@ yarn test
 ```
 This command will look for all test files (`.test.js` or `.test.jsx`) and execute them.
 
+A Babel.config.json and/or jest.config.js/jest.setup.js file may be needed. Populate them with the following if they are not already included:
+
+Babel.config.js
+{
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  }
+  
+jest.config.js
+export default {
+  testEnvironment: "jsdom",
+  moduleNameMapper: {
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+  },
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"]
+};
+
+jest.setup.js
+import { TextEncoder, TextDecoder } from 'util';
+
+if (typeof global.TextEncoder === 'undefined') {
+  global.TextEncoder = TextEncoder;
+}
+
+if (typeof global.TextDecoder === 'undefined') {
+  global.TextDecoder = TextDecoder;
+}
+
+
 ## Building for Production
 
 To build the frontend for production, run:
