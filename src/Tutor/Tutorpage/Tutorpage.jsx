@@ -25,18 +25,21 @@ const Tutorpage = ({ onBookSession }) => {
 
   const handleDateChange = (selectedDate) => {
     setDate(selectedDate);
+  };
+
+  const handleConfirmBooking = () => {
     setShowDateTimePicker(false);
 
-    // Pass appointment data to the parent or Appointment.jsx
+
     onBookSession({
       tutorId: tutor.id,
       tutorName: tutor.user,
-      date: selectedDate,
+      date,
     });
 
     setShowConfirmation(true);
 
-    // Automatically hide confirmation after 3 seconds
+
     setTimeout(() => setShowConfirmation(false), 3000);
   };
 
@@ -52,7 +55,7 @@ const Tutorpage = ({ onBookSession }) => {
             <button className="Register">Register Now</button>
           </Link>
         )}
-        {(user.role === 'student' || user.role === 'tutor')  && (
+        {(user.role === 'student' || user.role === 'tutor') && (
           <button onClick={handleBookSessionClick} className="book-session-btn">
             Book a Session
           </button>
@@ -76,12 +79,18 @@ const Tutorpage = ({ onBookSession }) => {
               dateFormat="Pp"
               inline
             />
-            <button
-              onClick={() => setShowDateTimePicker(false)}
-              className="cancel-btn"
-            >
-              Cancel
-            </button>
+            <div className="datetime-picker-actions">
+              <button onClick={handleConfirmBooking} className="confirm-btn" >
+                Confirm Booking
+              </button>
+
+              <button
+                onClick={() => setShowDateTimePicker(false)}
+                className="cancel-btn"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}

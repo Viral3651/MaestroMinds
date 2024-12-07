@@ -80,7 +80,17 @@
   z-index: 1010;
   text-align: center;
 }
+.confirm-btn {
+  margin-top: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
 
+}
 .cancel-btn {
   margin-top: 10px;
   background-color: #dc3545;
